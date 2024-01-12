@@ -4,10 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,8 +27,15 @@ public class Animal implements Serializable {
 	private double peso;
 	private Date nascimento;
 	
+	@OneToOne(mappedBy = "animal", cascade = CascadeType.ALL)
 	private Raca raca;
+	
+	@OneToOne(mappedBy = "animal", cascade = CascadeType.ALL)
 	private Especie especie;
+	
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 	
 	public Animal() {}
 
