@@ -39,13 +39,14 @@ public class Animal implements Serializable {
 	
 	public Animal() {}
 
-	public Animal(String nome, double peso, Date nascimento, Raca raca, Especie especie) {
+	public Animal(String nome, double peso, Date nascimento, Raca raca, Especie especie, Usuario usuario) {
 		super();
 		this.nome = nome;
 		this.peso = peso;
 		this.nascimento = nascimento;
 		this.raca = raca;
 		this.especie = especie;
+		this.usuario = usuario;
 	}
 
 	public String getNome() {
@@ -90,6 +91,14 @@ public class Animal implements Serializable {
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override
