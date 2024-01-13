@@ -86,6 +86,14 @@ public class Usuario implements Serializable {
 	public Integer getId() {
 		return id;
 	}
+	
+	public List<Animal> getAnimais() {
+		return animais;
+	}
+
+	public void addAnimail(Animal animal) {
+		this.animais.add(animal);
+	}
 
 
 	@Override
