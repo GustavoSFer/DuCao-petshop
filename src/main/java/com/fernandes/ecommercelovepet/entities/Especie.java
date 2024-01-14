@@ -1,14 +1,16 @@
 package com.fernandes.ecommercelovepet.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,9 +24,8 @@ public class Especie implements Serializable {
 	private Integer id;
 	private String nome;
 	
-	@OneToOne
-	@MapsId
-	private Animal animal;
+	@OneToMany(mappedBy = "especie", orphanRemoval = true, cascade = CascadeType.ALL)
+	private List<Animal> animais = new ArrayList<>();
 	
 	public Especie() {}
 
@@ -43,6 +44,10 @@ public class Especie implements Serializable {
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public List<Animal> getAnimais() {
+		return animais;
 	}
 
 	@Override

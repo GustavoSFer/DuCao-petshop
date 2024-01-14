@@ -42,6 +42,8 @@ public class TestConfig implements CommandLineRunner {
 		
 		Especie cachorro = new Especie("Cachorro");
 		
+		especie.save(cachorro);
+		
 		
 		
 	}
