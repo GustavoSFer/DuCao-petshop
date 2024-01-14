@@ -1,15 +1,19 @@
 package com.fernandes.ecommercelovepet.config;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.fernandes.ecommercelovepet.entities.Animal;
 import com.fernandes.ecommercelovepet.entities.Especie;
 import com.fernandes.ecommercelovepet.entities.Raca;
 import com.fernandes.ecommercelovepet.entities.Usuario;
+import com.fernandes.ecommercelovepet.repository.AnimalRepository;
 import com.fernandes.ecommercelovepet.repository.EspecieRepository;
 import com.fernandes.ecommercelovepet.repository.RacaRepository;
 import com.fernandes.ecommercelovepet.repository.UsuarioRepository;
@@ -17,6 +21,8 @@ import com.fernandes.ecommercelovepet.repository.UsuarioRepository;
 @Configuration
 @Profile("MySql")
 public class TestConfig implements CommandLineRunner {
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -26,6 +32,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private EspecieRepository especie;
+	
+	@Autowired
+	private AnimalRepository animal;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -44,7 +53,10 @@ public class TestConfig implements CommandLineRunner {
 		
 		especie.save(cachorro);
 		
+		Date data = sdf.parse("07/05/2020");
+		Animal animal1 = new Animal("Slinky", 32.10, data , viraLata, cachorro, cliente);
 		
+		animal.save(animal1);
 		
 	}
 
