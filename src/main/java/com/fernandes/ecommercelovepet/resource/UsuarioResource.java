@@ -31,9 +31,8 @@ public class UsuarioResource {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Optional<Usuario>> getById(@PathVariable Integer id) {
-		Optional<Usuario> pessoa = user.findById(id);
-		
+	public ResponseEntity<Usuario> getById(@PathVariable Integer id) {
+		Usuario pessoa = user.findById(id);
 		
 		return ResponseEntity.ok().body(pessoa);
 	}

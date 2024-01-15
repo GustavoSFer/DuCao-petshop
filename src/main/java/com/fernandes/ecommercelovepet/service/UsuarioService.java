@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fernandes.ecommercelovepet.entities.Usuario;
 import com.fernandes.ecommercelovepet.repository.UsuarioRepository;
+import com.fernandes.ecommercelovepet.service.exception.ResourceNotFound;
 
 @Service
 public class UsuarioService {
@@ -21,10 +22,10 @@ public class UsuarioService {
 		return usuarios;
 	}
 	
-	public Optional<Usuario> findById(Integer id) {
+	public Usuario findById(Integer id) {
 		Optional<Usuario> pessoa = user.findById(id);
 		
-		return pessoa;
+		return pessoa.orElseThrow(() -> new ResourceNotFound());
 	}
 	
 }
