@@ -28,4 +28,9 @@ public class UsuarioService {
 		return pessoa.orElseThrow(() -> new ResourceNotFound());
 	}
 	
+	public Usuario create(Usuario pessoa) {
+		Usuario createUser = user.save(pessoa);
+		
+		return createUser;
+	}
 }
