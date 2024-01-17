@@ -26,7 +26,7 @@ public class Usuario implements Serializable {
 	private Integer id;
 	private String nome;
 	private String cpf;
-	private int telefone;
+	private Integer telefone;
 	private boolean administrador;
 	
 	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL)
@@ -37,7 +37,7 @@ public class Usuario implements Serializable {
 	public Usuario() {}
 
 
-	public Usuario(String nome, String cpf, int telefone, boolean administrador) {
+	public Usuario(String nome, String cpf, Integer telefone, boolean administrador) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
@@ -66,7 +66,7 @@ public class Usuario implements Serializable {
 	}
 
 
-	public int getTelefone() {
+	public Integer getTelefone() {
 		return telefone;
 	}
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fernandes.ecommercelovepet.entities.Usuario;
 import com.fernandes.ecommercelovepet.repository.UsuarioRepository;
+import com.fernandes.ecommercelovepet.service.exception.CreateError;
 import com.fernandes.ecommercelovepet.service.exception.ResourceNotFound;
 
 @Service
@@ -31,7 +32,7 @@ public class UsuarioService {
 	public Usuario create(Usuario pessoa) {
 		String msg = verificaAtributos(pessoa);
 		if (msg != null) {
-			throw new ResourceNotFound();
+			throw new CreateError(msg);
 		}
 		Usuario createUser = user.save(pessoa);
 		return createUser;
@@ -43,6 +44,8 @@ public class UsuarioService {
 			return "Nome esta vazio";
 		} else if (pessoa.getCpf() == null) {
 			return "CPF esta vazio";
+		} else if (pessoa.getTelefone() == null) {
+			return "Telefone está vazio";
 		}
 		
 		return null;		
