@@ -12,25 +12,40 @@ import com.fernandes.ecommercelovepet.service.exception.ResourceNotFound;
 
 @Service
 public class UsuarioService {
-	
+
 	@Autowired
 	private UsuarioRepository user;
-	
+
 	public List<Usuario> findAll() {
 		List<Usuario> usuarios = user.findAll();
-		
+
 		return usuarios;
 	}
-	
+
 	public Usuario findById(Integer id) {
 		Optional<Usuario> pessoa = user.findById(id);
-		
+
 		return pessoa.orElseThrow(() -> new ResourceNotFound());
 	}
-	
+
 	public Usuario create(Usuario pessoa) {
+		String msg = verificaAtributos(pessoa);
+		if (msg != null) {
+			throw new ResourceNotFound();
+		}
 		Usuario createUser = user.save(pessoa);
-		
 		return createUser;
 	}
+
+	private String verificaAtributos(Usuario pessoa) {
+		
+		if (pessoa.getNome() == null) {
+			return "Nome esta vazio";
+		} else if (pessoa.getCpf() == null) {
+			return "CPF esta vazio";
+		}
+		
+		return null;		
+	}
+
 }
