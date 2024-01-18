@@ -65,4 +65,9 @@ public class UsuarioService {
 		pessoaBanco.setCpf(pessoa.getCpf());
 		pessoaBanco.setTelefone(pessoa.getTelefone());
 	}
+	
+	public void delete(Integer id) {
+		Usuario encontrarPessoas = findById(id);
+		user.delete(encontrarPessoas);
+	}
 }
