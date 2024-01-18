@@ -51,7 +51,7 @@ public class UsuarioService {
 		return null;		
 	}
 
-	private Usuario update(Integer id, Usuario pessoa) {
+	public Usuario update(Integer id, Usuario pessoa) {
 		Usuario encontrarPessoas = findById(id);
 		AtualizaCadastro(pessoa, encontrarPessoas);
 		
