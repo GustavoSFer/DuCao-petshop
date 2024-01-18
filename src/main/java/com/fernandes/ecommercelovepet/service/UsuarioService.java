@@ -51,4 +51,18 @@ public class UsuarioService {
 		return null;		
 	}
 
+	private Usuario update(Integer id, Usuario pessoa) {
+		Usuario encontrarPessoas = findById(id);
+		AtualizaCadastro(pessoa, encontrarPessoas);
+		
+		user.save(encontrarPessoas);
+		
+		return encontrarPessoas;		
+	}
+	
+	private void AtualizaCadastro(Usuario pessoa, Usuario pessoaBanco) {
+		pessoaBanco.setNome(pessoa.getNome());
+		pessoaBanco.setCpf(pessoa.getCpf());
+		pessoaBanco.setTelefone(pessoa.getTelefone());
+	}
 }
