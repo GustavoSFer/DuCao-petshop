@@ -15,17 +15,17 @@ import com.fernandes.ecommercelovepet.service.exception.ResourceNotFound;
 public class RacaService {
 	
 	@Autowired
-	private RacaRepository racaService;
+	private RacaRepository racaRepository;
 	
 	
 	public List<Raca> findAll() {
-		List<Raca> racas = racaService.findAll();
+		List<Raca> racas = racaRepository.findAll();
 		
 		return racas;
 	}
 	
 	public Raca findById(Integer id) {
-		Optional<Raca> raca = racaService.findById(id);
+		Optional<Raca> raca = racaRepository.findById(id);
 		
 		return raca.orElseThrow(() -> new ResourceNotFound());
 	}
@@ -35,8 +35,20 @@ public class RacaService {
 			throw new CreateError("Nome da raca está em branco");
 		}
 			
-		Raca createRaca = racaService.save(raca);
+		Raca createRaca = racaRepository.save(raca);
 		return createRaca;
+	}
+	
+	public Raca update(Raca raca, Integer id) {
+		Raca findRaca = findById(id);
+		updateRaca(findRaca, raca);
+		racaRepository.save(findRaca);
+		
+		return findRaca;
+	}
+	
+	private void updateRaca(Raca findRaca, Raca raca) {
+		findRaca.setNome(raca.getNome());
 	}
 
 }

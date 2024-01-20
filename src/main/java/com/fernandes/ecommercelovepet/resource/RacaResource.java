@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,4 +45,12 @@ public class RacaResource {
 		
 		return ResponseEntity.created(uri).body(createRaca);
 	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Raca> update(@RequestBody Raca raca, @PathVariable Integer id) {
+		Raca racaUpdate = racaService.update(raca, id);
+		
+		return ResponseEntity.ok().body(racaUpdate);
+	}
+	
 }
