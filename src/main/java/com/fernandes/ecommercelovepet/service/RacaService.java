@@ -27,7 +27,7 @@ public class RacaService {
 	public Raca findById(Integer id) {
 		Optional<Raca> raca = racaRepository.findById(id);
 		
-		return raca.orElseThrow(() -> new ResourceNotFound());
+		return raca.orElseThrow(() -> new ResourceNotFound("Raça não encontrada!"));
 	}
 	
 	public Raca create(Raca raca) {
@@ -49,6 +49,12 @@ public class RacaService {
 	
 	private void updateRaca(Raca findRaca, Raca raca) {
 		findRaca.setNome(raca.getNome());
+	}
+	
+	public void Delete(Integer id) {
+		Raca deletaRaca = findById(id);
+		
+		racaRepository.delete(deletaRaca);
 	}
 
 }

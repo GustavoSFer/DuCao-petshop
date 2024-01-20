@@ -19,7 +19,7 @@ public class ResourceExceptionHandler {
 	public ResponseEntity<StanderError> ResourceNotFoundError(ResourceNotFound e, HttpServletRequest request) {
 		String error = "Recurso não encontrado!";
 		HttpStatus status = HttpStatus.NOT_FOUND;
-		StanderError err = new StanderError(Instant.now(), status.value(), error, "Pessoa não encontrada em nosso banco de dados", request.getRequestURI());
+		StanderError err = new StanderError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
 		
 		return ResponseEntity.status(status).body(err);
 	}

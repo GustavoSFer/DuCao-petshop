@@ -26,7 +26,7 @@ public class UsuarioService {
 	public Usuario findById(Integer id) {
 		Optional<Usuario> pessoa = user.findById(id);
 
-		return pessoa.orElseThrow(() -> new ResourceNotFound());
+		return pessoa.orElseThrow(() -> new ResourceNotFound("Pessoa não encontrada!"));
 	}
 
 	public Usuario create(Usuario pessoa) {
