@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fernandes.ecommercelovepet.entities.Especie;
 import com.fernandes.ecommercelovepet.repository.EspecieRepository;
+import com.fernandes.ecommercelovepet.service.exception.CreateError;
 import com.fernandes.ecommercelovepet.service.exception.ResourceNotFound;
 
 @Service
@@ -26,6 +27,15 @@ public class EspecieService {
 		Optional<Especie> especie = especieRepository.findById(id);
 		
 		return especie.orElseThrow(() -> new ResourceNotFound("Especie do id:" + id + " não encontrado!"));
+	}
+	
+	public Especie create(Especie especie) {
+		if (especie.getNome().isEmpty()) {
+			throw new CreateError("Erro ao tentar criar a especie, verifique os parametros informados.");
+		}
+		
+		especieRepository.save(especie);
+		return especie;
 	}
 
 }
