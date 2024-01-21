@@ -38,4 +38,14 @@ public class EspecieService {
 		return especie;
 	}
 
+	public Especie update(Especie especie, Integer id) {
+		Especie findEspecie = findById(id);
+		if (!especie.getNome().isEmpty()) {
+			findEspecie.setNome(especie.getNome());
+		} else {
+			throw new CreateError("Erro ao tentar atualizar a especie, verifique os parametros informados.");
+		}
+		especieRepository.save(findEspecie);
+		return findEspecie;
+	}
 }
