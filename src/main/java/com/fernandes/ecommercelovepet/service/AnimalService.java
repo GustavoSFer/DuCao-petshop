@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fernandes.ecommercelovepet.entities.Animal;
 import com.fernandes.ecommercelovepet.repository.AnimalRepository;
+import com.fernandes.ecommercelovepet.service.exception.CreateError;
 import com.fernandes.ecommercelovepet.service.exception.ResourceNotFound;
 
 @Service
@@ -26,6 +27,25 @@ public class AnimalService {
 		Optional<Animal> animal = animalRepository.findById(id);
 		
 		return animal.orElseThrow(() -> new ResourceNotFound("Animal com o id: " + id + " não encontrado."));
+	}
+	
+	public Animal create(Animal animal) {
+		boolean isValid = verificaDadosAnimal(animal);
+		if (!isValid) {
+			throw new CreateError("Dados passado invalido. Verifique as informações passadas");
+		}
+		animalRepository.save(animal);
+		
+		return animal;
+	}
+	
+	private boolean verificaDadosAnimal(Animal animal) {
+		boolean isValid = true;
+		
+		if (animal.getNome().isEmpty() || animal.getEspecie().getNome().isEmpty() || animal.getRaca().getNome().isEmpty() || animal.getNascimento().toString() == "") {
+			isValid = false;
+		}
+		return isValid;
 	}
 
 }
