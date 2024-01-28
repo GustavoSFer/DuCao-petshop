@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fernandes.ecommercelovepet.entities.Animal;
 import com.fernandes.ecommercelovepet.service.AnimalService;
+import com.fernandes.ecommercelovepet.util.ResponseMessages;
 
 @RestController
 @RequestMapping(value = "/animais")
@@ -51,5 +53,12 @@ public class AnimalResource {
 		Animal updateAnimal = animalService.update(animal, id);
 		
 		return ResponseEntity.ok().body(updateAnimal);
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<ResponseMessages> delete(@PathVariable Integer id) {
+		ResponseMessages status = animalService.delete(id);
+		
+		return ResponseEntity.ok().body(status);
 	}
 }

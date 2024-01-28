@@ -10,6 +10,7 @@ import com.fernandes.ecommercelovepet.entities.Animal;
 import com.fernandes.ecommercelovepet.repository.AnimalRepository;
 import com.fernandes.ecommercelovepet.service.exception.CreateError;
 import com.fernandes.ecommercelovepet.service.exception.ResourceNotFound;
+import com.fernandes.ecommercelovepet.util.ResponseMessages;
 
 @Service
 public class AnimalService {
@@ -64,6 +65,16 @@ public class AnimalService {
 		update.setRaca(animal.getRaca());
 		update.setEspecie(animal.getEspecie());
 		update.setUsuario(animal.getUsuario());
+	}
+	
+	public ResponseMessages delete(Integer id) {
+		Animal animal = findById(id);
+		
+		animalRepository.delete(animal);
+		
+		ResponseMessages statusDelete = new ResponseMessages(true, "Animal deletado com sucesso", id);
+		
+		return statusDelete;
 	}
 
 }
