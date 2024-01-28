@@ -52,7 +52,9 @@ public class AnimalService {
 		Animal findByAnimal = findById(id);
 		atualizaDadoAnimal(animal, findByAnimal);
 		
+		animalRepository.save(findByAnimal);
 		
+		return findByAnimal;
 	}
 	
 	private void atualizaDadoAnimal(Animal animal, Animal update) {
