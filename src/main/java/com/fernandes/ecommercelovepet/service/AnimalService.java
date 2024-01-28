@@ -47,5 +47,21 @@ public class AnimalService {
 		}
 		return isValid;
 	}
+	
+	public Animal update(Animal animal , Integer id) {
+		Animal findByAnimal = findById(id);
+		atualizaDadoAnimal(animal, findByAnimal);
+		
+		
+	}
+	
+	private void atualizaDadoAnimal(Animal animal, Animal update) {
+		update.setNome(animal.getNome());
+		update.setNascimento(animal.getNascimento());
+		update.setPeso(animal.getPeso());
+		update.setRaca(animal.getRaca());
+		update.setEspecie(animal.getEspecie());
+		update.setUsuario(animal.getUsuario());
+	}
 
 }
