@@ -27,6 +27,7 @@ public class Usuario implements Serializable {
 	private String nome;
 	private String cpf;
 	private Integer telefone;
+	private String email;
 	private boolean administrador;
 	
 	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL)
@@ -37,11 +38,12 @@ public class Usuario implements Serializable {
 	public Usuario() {}
 
 
-	public Usuario(String nome, String cpf, Integer telefone, boolean administrador) {
+	public Usuario(String nome, String cpf, Integer telefone, String email, boolean administrador) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
+		this.email = email;
 		this.administrador = administrador;
 	}
 
@@ -49,7 +51,6 @@ public class Usuario implements Serializable {
 	public String getNome() {
 		return nome;
 	}
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -75,6 +76,14 @@ public class Usuario implements Serializable {
 		this.telefone = telefone;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public boolean isAdministrador() {
 		return administrador;
