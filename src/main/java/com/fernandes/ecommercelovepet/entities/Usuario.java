@@ -28,6 +28,7 @@ public class Usuario implements Serializable {
 	private String cpf;
 	private Integer telefone;
 	private String email;
+	private String senha;
 	private boolean administrador;
 	
 	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL)
@@ -38,12 +39,13 @@ public class Usuario implements Serializable {
 	public Usuario() {}
 
 
-	public Usuario(String nome, String cpf, Integer telefone, String email, boolean administrador) {
+	public Usuario(String nome, String cpf, Integer telefone, String email, String senha, boolean administrador) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.email = email;
+		this.senha = senha;
 		this.administrador = administrador;
 	}
 
@@ -87,6 +89,15 @@ public class Usuario implements Serializable {
 
 	public boolean isAdministrador() {
 		return administrador;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 
