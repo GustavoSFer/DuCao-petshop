@@ -46,6 +46,10 @@ public class UsuarioService {
 			return "CPF esta vazio";
 		} else if (pessoa.getTelefone() == null) {
 			return "Telefone está vazio";
+		} else if (pessoa.getEmail() == null) {
+			return "E-mail está vazio.";
+		} else if (pessoa.getSenha() == null || pessoa.getSenha().length() < 6) {
+			return "Senha não pode ser vazia ou menor que 6 caracteres.";
 		}
 		
 		return null;		
