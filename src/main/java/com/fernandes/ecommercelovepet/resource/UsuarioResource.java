@@ -46,7 +46,7 @@ public class UsuarioResource {
 	}
 	
 	@GetMapping(params = "email")
-	public ResponseEntity<Usuario> getByEmail(@RequestParam(name = "email") String email) {
+	public ResponseEntity<Usuario> getByEmail(@RequestParam String email) {
 		Usuario pessoa = user.findByEmail(email);
 		
 		return ResponseEntity.ok().body(pessoa);
