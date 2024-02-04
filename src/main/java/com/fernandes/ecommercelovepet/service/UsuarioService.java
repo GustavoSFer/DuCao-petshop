@@ -29,6 +29,12 @@ public class UsuarioService {
 		return pessoa.orElseThrow(() -> new ResourceNotFound("Pessoa não encontrada!"));
 	}
 
+	public Usuario findByEmail(String email) {
+		Usuario pessoa = user.findByEmail(email);
+
+		return pessoa;
+	}
+	
 	public Usuario create(Usuario pessoa) {
 		String msg = verificaAtributos(pessoa);
 		if (msg != null) {
