@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -46,17 +45,10 @@ public class UsuarioResource {
 	}
 	
 	@GetMapping(params = "email")
-	public ResponseEntity<Usuario> getByEmail(@RequestParam String email) {
-		Usuario pessoa = user.findByEmail(email);
+	public ResponseEntity<Usuario> getByEmail(@RequestParam String email, @RequestParam String senha) {
+		Usuario pessoa = user.findByEmail(email, senha);
 		
 		return ResponseEntity.ok().body(pessoa);
-	}
-	
-	@PostMapping
-	public ResponseEntity<Usuario> login(@RequestBody Usuario usuario) {
-		Usuario loginUser = user.login(usuario);
-		
-		return ResponseEntity.ok().body(loginUser);
 	}
 	
 	@PostMapping

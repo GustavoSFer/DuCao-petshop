@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.fernandes.ecommercelovepet.service.exception.CreateError;
+import com.fernandes.ecommercelovepet.service.exception.LoginError;
 import com.fernandes.ecommercelovepet.service.exception.ResourceNotFound;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,6 +27,15 @@ public class ResourceExceptionHandler {
 	
 	@ExceptionHandler(CreateError.class)
 	public ResponseEntity<StanderError> CreateException(CreateError e, HttpServletRequest request) {
+		String error = e.getMessage();
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		StanderError err = new StanderError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
+		
+		return ResponseEntity.status(status).body(err);
+	}
+	
+	@ExceptionHandler(LoginError.class)
+	public ResponseEntity<StanderError> LoginException(LoginError e, HttpServletRequest request) {
 		String error = e.getMessage();
 		HttpStatus status = HttpStatus.NOT_FOUND;
 		StanderError err = new StanderError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
