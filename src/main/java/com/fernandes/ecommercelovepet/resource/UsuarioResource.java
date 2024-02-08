@@ -53,6 +53,13 @@ public class UsuarioResource {
 	}
 	
 	@PostMapping
+	public ResponseEntity<Usuario> login(@RequestBody Usuario usuario) {
+		Usuario loginUser = user.login(usuario);
+		
+		return ResponseEntity.ok().body(loginUser);
+	}
+	
+	@PostMapping
 	public ResponseEntity<Usuario> create(@RequestBody Usuario pessoa) {
 		System.out.println(pessoa);
 		Usuario pessoaCriada = user.create(pessoa);

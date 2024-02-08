@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.fernandes.ecommercelovepet.entities.Usuario;
 import com.fernandes.ecommercelovepet.repository.UsuarioRepository;
 import com.fernandes.ecommercelovepet.service.exception.CreateError;
+import com.fernandes.ecommercelovepet.service.exception.LoginError;
 import com.fernandes.ecommercelovepet.service.exception.ResourceNotFound;
 
 @Service
@@ -29,9 +30,11 @@ public class UsuarioService {
 		return pessoa.orElseThrow(() -> new ResourceNotFound("Pessoa não encontrada!"));
 	}
 
-	public Usuario findByEmail(String email) {
+	public Usuario findByEmail(String email, String senha) {
 		Usuario pessoa = user.findByEmail(email);
-
+		if (pessoa.getSenha() != senha) {
+			throw new LoginError("Senha incorreto!");
+		}
 		return pessoa;
 	}
 	
