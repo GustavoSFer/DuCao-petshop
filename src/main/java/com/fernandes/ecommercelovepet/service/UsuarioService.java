@@ -33,6 +33,10 @@ public class UsuarioService {
 	public Usuario findByEmail(String email, String senha) {
 		Usuario pessoa = user.findByEmail(email);
 		
+		if (pessoa == null) {
+			throw new ResourceNotFound("Usuario não encontrado");
+		}
+		
 		if (!pessoa.getSenha().equalsIgnoreCase(senha)) {
 			throw new LoginError("Senha informada incorreto!");
 		}
