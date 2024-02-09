@@ -33,7 +33,7 @@ public class UsuarioService {
 	public Usuario findByEmail(String email, String senha) {
 		Usuario pessoa = user.findByEmail(email);
 		
-		if (pessoa.getSenha() != senha) {
+		if (!pessoa.getSenha().equalsIgnoreCase(senha)) {
 			throw new LoginError("Senha informada incorreto!");
 		}
 
