@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fernandes.ecommercelovepet.entities.Usuario;
 import com.fernandes.ecommercelovepet.service.UsuarioService;
+import com.fernandes.ecommercelovepet.util.PasswordEncode;
 import com.fernandes.ecommercelovepet.util.ResponseMessages;
 
 @RestController
@@ -45,7 +45,7 @@ public class UsuarioResource {
 		return ResponseEntity.ok().body(pessoa);
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	@GetMapping("/login")
 	public ResponseEntity<Usuario> getByEmail(@RequestParam(value = "email", defaultValue = "") String email, @RequestParam(value = "senha", defaultValue = "") String senha) {
 		Usuario pessoa = user.findByEmail(email, senha);
 		
@@ -54,7 +54,10 @@ public class UsuarioResource {
 	
 	@PostMapping
 	public ResponseEntity<Usuario> create(@RequestBody Usuario pessoa) {
-		System.out.println(pessoa);
+
+		String encoderSenha = PasswordEncode.encoder(pessoa.getSenha());
+		pessoa.setSenha(encoderSenha);
+		
 		Usuario pessoaCriada = user.create(pessoa);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(pessoa.getId()).toUri();
 		
