@@ -3,6 +3,7 @@ package com.fernandes.ecommercelovepet.resource;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.fernandes.ecommercelovepet.dto.UsuarioDTO;
 import com.fernandes.ecommercelovepet.entities.Usuario;
 import com.fernandes.ecommercelovepet.service.UsuarioService;
 import com.fernandes.ecommercelovepet.util.PasswordEncode;
@@ -32,10 +34,11 @@ public class UsuarioResource {
 	private UsuarioService user;
 	
 	@GetMapping
-	public ResponseEntity<List<Usuario>> findAll() {
+	public ResponseEntity<List<UsuarioDTO>> findAll() {
 		List<Usuario> users = user.findAll();
+		List<UsuarioDTO> usersDTO = users.stream().map(x -> new UsuarioDTO(x)).collect(Collectors.toList());
 		
-		return ResponseEntity.ok().body(users);
+		return ResponseEntity.ok().body(usersDTO);
 	}
 	
 	@GetMapping(value = "/{id}")

@@ -8,5 +8,4 @@ public class PasswordEncode {
 		BCryptPasswordEncoder encoderSenha = new BCryptPasswordEncoder();
 		return encoderSenha.encode(senha);
 	}
-
 }
