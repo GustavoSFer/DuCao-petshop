@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -26,7 +27,7 @@ import com.fernandes.ecommercelovepet.util.PasswordEncode;
 import com.fernandes.ecommercelovepet.util.ResponseMessages;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(value = "/usuarios")
 public class UsuarioResource {
 	
@@ -48,8 +49,8 @@ public class UsuarioResource {
 		return ResponseEntity.ok().body(pessoa);
 	}
 	
-	@GetMapping("/login")
-	public ResponseEntity<Usuario> getByEmail(@RequestParam(value = "email", defaultValue = "") String email, @RequestParam(value = "senha", defaultValue = "") String senha) {
+	@PostMapping("/login")
+	public ResponseEntity<Usuario> getByEmail(@RequestParam(value = "email") String email, @RequestParam(value = "senha") String senha) {
 		Usuario pessoa = user.findByEmail(email, senha);
 		
 		return ResponseEntity.ok().body(pessoa);
