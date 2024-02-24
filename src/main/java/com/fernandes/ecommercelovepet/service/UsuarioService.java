@@ -83,6 +83,9 @@ public class UsuarioService {
 		pessoaBanco.setNome(pessoa.getNome());
 		pessoaBanco.setCpf(pessoa.getCpf());
 		pessoaBanco.setTelefone(pessoa.getTelefone());
+		if (pessoa.getSenha() != null) {
+			pessoaBanco.setSenha(pessoa.getSenha());
+		}
 	}
 	
 	public void delete(Integer id) {

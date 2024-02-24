@@ -100,7 +100,10 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-
+	public boolean getAdministrador() {
+		return this.administrador;
+	}
+	
 	public void setAdministrador(boolean administrador) {
 		this.administrador = administrador;
 	}

@@ -42,8 +42,8 @@ public class AnimalService {
 	
 	private boolean verificaDadosAnimal(Animal animal) {
 		boolean isValid = true;
-		
-		if (animal.getNome().isEmpty() || animal.getEspecie().getNome().isEmpty() || animal.getRaca().getNome().isEmpty() || animal.getNascimento().toString() == "") {
+		System.out.println(animal.getEspecie().getId());
+		if (animal.getNome().isEmpty() || animal.getEspecie().getId() == null || animal.getRaca().getId() == null || animal.getNascimento().toString() == "") {
 			isValid = false;
 		}
 		return isValid;

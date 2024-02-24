@@ -70,6 +70,10 @@ public class UsuarioResource {
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<Usuario> update(@PathVariable Integer id, @RequestBody Usuario pessoa) {
+		if (pessoa.getSenha() != null) {
+			String encoderSenha = PasswordEncode.encoder(pessoa.getSenha());
+			pessoa.setSenha(encoderSenha);
+		}
 		Usuario pessoaAtualizada = user.update(id, pessoa);
 		
 		return ResponseEntity.ok().body(pessoaAtualizada);
