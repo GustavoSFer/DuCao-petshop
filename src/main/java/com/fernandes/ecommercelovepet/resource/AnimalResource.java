@@ -42,6 +42,13 @@ public class AnimalResource {
 		return ResponseEntity.ok().body(animal);
 	}
 	
+	@GetMapping(value = "/usuario/{id}")
+	public ResponseEntity<List<Animal>> findByAnimalUsuario(@PathVariable String id) {
+		List<Animal> animais = animalService.findByAnimalUsuario(id);
+		
+		return ResponseEntity.ok().body(animais);
+	}
+	
 	@PostMapping
 	public ResponseEntity<Animal> create(@RequestBody Animal animal) {
 		Animal createAnimal = animalService.create(animal);
@@ -63,4 +70,5 @@ public class AnimalResource {
 		
 		return ResponseEntity.ok().body(status);
 	}
+		
 }

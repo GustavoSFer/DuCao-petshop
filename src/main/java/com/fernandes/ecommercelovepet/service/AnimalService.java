@@ -1,5 +1,6 @@
 package com.fernandes.ecommercelovepet.service;
 
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +43,7 @@ public class AnimalService {
 	
 	private boolean verificaDadosAnimal(Animal animal) {
 		boolean isValid = true;
-		System.out.println(animal.getEspecie().getId());
+
 		if (animal.getNome().isEmpty() || animal.getEspecie().getId() == null || animal.getRaca().getId() == null || animal.getNascimento().toString() == "") {
 			isValid = false;
 		}
@@ -76,5 +77,10 @@ public class AnimalService {
 		
 		return statusDelete;
 	}
-
+	
+	public List<Animal> findByAnimalUsuario(String id) {
+		List<Animal> animais = animalRepository.findByUsuario(id);
+		
+		return animais;
+	}
 }
