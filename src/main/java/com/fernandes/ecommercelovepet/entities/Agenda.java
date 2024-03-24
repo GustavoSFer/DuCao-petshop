@@ -5,15 +5,33 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Agenda")
 public class Agenda implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private LocalDate data;
 	private LocalTime hora;
 	private boolean status;
 	private int diaSemana;
+
+	public Agenda(LocalDate data, LocalTime hora, boolean status, int diaSemana) {
+		super();
+		this.data = data;
+		this.hora = hora;
+		this.status = status;
+		this.diaSemana = diaSemana;
+	}
 	
 	public Integer getId() {
 		return id;
@@ -52,14 +70,6 @@ public class Agenda implements Serializable {
 	}
 
 	public void setDiaSemana(int diaSemana) {
-		this.diaSemana = diaSemana;
-	}
-
-	public Agenda(LocalDate data, LocalTime hora, boolean status, int diaSemana) {
-		super();
-		this.data = data;
-		this.hora = hora;
-		this.status = status;
 		this.diaSemana = diaSemana;
 	}
 
