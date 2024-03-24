@@ -5,10 +5,17 @@ import java.util.Objects;
 
 import com.fernandes.ecommercelovepet.entities.AgendaBanhoPK;
 
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Agenda_banho")
 public class AgendaBanho implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@EmbeddedId
 	private AgendaBanhoPK id;
 	private boolean status;
 	
