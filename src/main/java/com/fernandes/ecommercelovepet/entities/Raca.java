@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,6 +27,7 @@ public class Raca implements Serializable {
 	private String nome;
 	
 	@OneToMany(mappedBy = "raca", orphanRemoval = true, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Animal> animais = new ArrayList<>();
 	
 	public Raca() {}

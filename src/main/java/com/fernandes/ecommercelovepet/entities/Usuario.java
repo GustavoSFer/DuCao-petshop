@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,21 +26,26 @@ public class Usuario implements Serializable {
 	private Integer id;
 	private String nome;
 	private String cpf;
-	private int telefone;
+	private Integer telefone;
+	private String email;
+	private String senha;
 	private boolean administrador;
 	
 	@OneToMany(mappedBy = "usuario", orphanRemoval = true, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Animal> animais = new ArrayList<>();
 	
 	
 	public Usuario() {}
 
 
-	public Usuario(String nome, String cpf, int telefone, boolean administrador) {
+	public Usuario(String nome, String cpf, Integer telefone, String email, String senha, boolean administrador) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.telefone = telefone;
+		this.email = email;
+		this.senha = senha;
 		this.administrador = administrador;
 	}
 
@@ -46,7 +53,6 @@ public class Usuario implements Serializable {
 	public String getNome() {
 		return nome;
 	}
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -63,7 +69,7 @@ public class Usuario implements Serializable {
 	}
 
 
-	public int getTelefone() {
+	public Integer getTelefone() {
 		return telefone;
 	}
 
@@ -72,12 +78,32 @@ public class Usuario implements Serializable {
 		this.telefone = telefone;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public boolean isAdministrador() {
 		return administrador;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
 
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public boolean getAdministrador() {
+		return this.administrador;
+	}
+	
 	public void setAdministrador(boolean administrador) {
 		this.administrador = administrador;
 	}
