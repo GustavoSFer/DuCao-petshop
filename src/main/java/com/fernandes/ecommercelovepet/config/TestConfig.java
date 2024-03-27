@@ -1,6 +1,8 @@
 package com.fernandes.ecommercelovepet.config;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -9,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.fernandes.ecommercelovepet.entities.Agenda;
 import com.fernandes.ecommercelovepet.entities.Animal;
 import com.fernandes.ecommercelovepet.entities.Especie;
 import com.fernandes.ecommercelovepet.entities.Raca;
@@ -23,6 +26,7 @@ import com.fernandes.ecommercelovepet.repository.UsuarioRepository;
 public class TestConfig implements CommandLineRunner {
 	
 	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -57,6 +61,9 @@ public class TestConfig implements CommandLineRunner {
 		Animal animal1 = new Animal("Slinky", 32.10, data , viraLata, cachorro, cliente);
 		
 		animal.save(animal1);
+		
+		Agenda agenda = new Agenda(LocalDate.now(), LocalTime.now(), false, 6);
+		agenda.abrirAgenda(LocalDate.now(), LocalDate.now().plusDays(5), 30);
 		
 	}
 

@@ -90,6 +90,20 @@ public class Agenda implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 	
-	
+	public void abrirAgenda(LocalDate dataInicio, LocalDate dataFim, int duracao) {
+		LocalDate dataMomento = dataInicio;
+		
+		 while(dataMomento.compareTo(dataFim) <= 0) {
+			 dataMomento = dataMomento.plusDays(1);
+			System.out.println(dataFim);
+			System.out.println("vaaaai" + dataMomento);
+			/*
+			negativo (se menor),
+			0(se for igual) ou
+			positivo maior 0 (se maior).
+			*/
+			System.out.println(dataMomento.compareTo(dataFim));
+		};
+	}
 
 }
