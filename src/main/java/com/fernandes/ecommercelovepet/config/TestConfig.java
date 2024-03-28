@@ -62,9 +62,6 @@ public class TestConfig implements CommandLineRunner {
 		
 		animal.save(animal1);
 		
-		Agenda agenda = new Agenda(LocalDate.now(), LocalTime.now(), false, 6);
-		agenda.abrirAgenda(LocalDate.now(), LocalDate.now().plusDays(5), 30);
-		
 	}
 
 }
